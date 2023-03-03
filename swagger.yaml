@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: Flask System Info API
+  version: 1.0.0
+  description: API to get system information
+servers:
+  - url: http://localhost:5000
+paths:
+  /get-info:
+    post:
+      summary: Get items info from a database
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                host:
+                  type: string
+                port:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                storage:
+                  type: string
+                database:
+                  type: string
+                table:
+                  type: string
+              required:
+                - host
+                - port
+                - username
+                - password
+                - storage
+                - database
+                - table
+      responses:
+        '200':
+          description: OK
+  /ping:
+    post:
+      summary: Ping the server to check if it is running
+      responses:
+        '200':
+          description: OK
+  /info:
+    post:
+      summary: Get system information
+      responses:
+        '200':
+          description: text (server info)
